@@ -25,7 +25,7 @@ public class PaymentControllerImpl implements PaymentController {
 	PaymentService service;
 
 	@RequestMapping(value="/path",  method=RequestMethod.GET)
-//	@ResponseBodyList<Payment>
+//	@ResponseBody
 	public String queryAll(HttpServletRequest req, Model model) {
 //		return service.queryAll();
 		

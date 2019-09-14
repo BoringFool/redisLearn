@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zm.redis.mapper.RedisMapper" >
+    <resultMap id="BaseResultMap" type="com.zm.redis.model.RedisIntergration" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="VARCHAR" />
+        <collection property="user" ofType="com.zm.redis.model.RedisIntergration" resultMap="extra"/>
+    </resultMap>
+    
+    <resultMap id="extra" type="com.zm.redis.model.RedisIntergration">
+    	<id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="age" property="age" jdbcType="VARCHAR" />
+   	</resultMap>
+    
+    <sql id="Base_Column_List" >
+        id, name, age
+    </sql>
+ 
+    <select id="queryAll" resultMap="BaseResultMap"  >
+       SELECT 
+       <include refid="Base_Column_List" />
+	   FROM redis
+    </select>
+ 
+    <select id="queryById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        SELECT 
+       <include refid="Base_Column_List" />
+	   FROM redis
+	   WHERE id = #{id}
+    </select>
+ 
+    <!-- <insert id="insert" parameterType="com.kerry.model.User" >
+       INSERT INTO 
+       		user
+       		(id,name,age) 
+       	VALUES
+       		(#{id},#{name}, #{age})
+    </insert>
+    
+    <update id="update" parameterType="com.kerry.model.User" >
+       UPDATE 
+       		user 
+       SET 
+       	<if test="name != null">name = #{name},</if>
+       	<if test="age != null">age = #{age},</if>
+       WHERE 
+       		id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="java.lang.Integer" >
+       DELETE FROM
+       		 user 
+       WHERE 
+       		 id =#{id}
+    </delete> -->
+ 
+</mapper>

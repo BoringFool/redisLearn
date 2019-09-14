@@ -9,6 +9,7 @@ import com.zm.redis.model.Payment;
 
 public interface PaymentController {
 	public String queryAll(HttpServletRequest req, Model model);
+	
 //	public List<Payment> queryAll();
 	
 	public Payment queryById(int id);
